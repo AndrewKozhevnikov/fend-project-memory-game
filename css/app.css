@@ -66,12 +66,8 @@ h1 {
 }
 
 .deck .card.open {
-    transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
-}
-
-.deck .card.show {
     font-size: 33px;
 }
 
@@ -79,6 +75,32 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+}
+
+.deck .card.incorrect {
+    cursor: default;
+    background: #F85B3B;
+    font-size: 33px;
+}
+
+.deck .card.start_open_anim {
+    animation: 0.2s rotate_y_180_to_90 linear;
+}
+
+.deck .card.end_open_anim {
+    animation: 0.2s rotate_y_90_to_0 linear;
+}
+
+.deck .card.close_anim {
+    animation: 0.2s rotate_y_180_to_0 linear;
+}
+
+.deck .card.match_anim {
+    animation: 0.8s rubberBand linear;
+}
+
+.deck .card.incorrect_anim {
+    animation: 0.8s wobble linear;
 }
 
 /*
