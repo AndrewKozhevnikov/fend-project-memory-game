@@ -73,12 +73,12 @@ function onCardClick(event) {
         return;
     }
 
-    updateScorePanel(++moves);
-
     if (prevCard == null) {
         openCard(card);
         prevCard = card;
     } else {
+        updateScorePanel(++moves);
+
         if (cardsAreMatched(prevCard, card)) {
             matchCards(prevCard, card);
         } else {
@@ -98,9 +98,9 @@ function updateScorePanel(moves) {
 
     const maxStars = 3;
 
-    if (moves <= 20) {
+    if (moves <= 10) {
         starsCount = maxStars;
-    } else if (moves <= 40) {
+    } else if (moves <= 20) {
         starsCount = maxStars - 1;
     } else {
         starsCount = maxStars - 2;
