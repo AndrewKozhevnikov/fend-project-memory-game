@@ -32,10 +32,18 @@ timer.addEventListener('reset', updateTimerSpan);
 document.addEventListener('DOMContentLoaded', restartGame);
 restart.addEventListener('click', restartGame);
 
+/**
+ * Update timer UI
+ */
 function updateTimerSpan() {
     timerSpan.textContent = timer.getTimeValues().toString();
 }
 
+/**
+ * Restart game.
+ * Reset all game statistics values.
+ * Shuffle cards.
+ */
 function restartGame() {
     timer.reset();
 
@@ -62,6 +70,10 @@ function restartGame() {
     matchedCardsCount = 0;
 }
 
+/**
+ * Handle on card click
+ * @param event
+ */
 function onCardClick(event) {
     let card = event.target;
 
@@ -89,6 +101,10 @@ function onCardClick(event) {
     }
 }
 
+/**
+ * Update score UI
+ * @param moves
+ */
 function updateScorePanel(moves) {
     movesSpan.textContent = moves;
 
@@ -115,10 +131,19 @@ function updateScorePanel(moves) {
     }
 }
 
+/**
+ * Check if card is opened or matched
+ * @param card
+ * @returns {boolean}
+ */
 function cardIsOpenedOrMatched(card) {
     return (card.classList.contains(open)) || (card.classList.contains(match));
 }
 
+/**
+ * Open card with animation
+ * @param card
+ */
 function openCard(card) {
     function onHalfAnimationEnd() {
         card.removeEventListener('animationend', onHalfAnimationEnd);
@@ -131,6 +156,11 @@ function openCard(card) {
     card.classList.add(startOpenAnimation);
 }
 
+/**
+ * Match cards with animation
+ * @param prevCard
+ * @param card
+ */
 function matchCards(prevCard, card) {
     cleanCardClassList(prevCard);
     cleanCardClassList(card);
@@ -147,6 +177,12 @@ function matchCards(prevCard, card) {
     }
 }
 
+/**
+ * Check if cards are matched
+ * @param prevCard
+ * @param card
+ * @returns {boolean}
+ */
 function cardsAreMatched(prevCard, card) {
     const prevValue = prevCard.querySelector('i').classList[1];
     const value = card.querySelector('i').classList[1];
@@ -154,6 +190,12 @@ function cardsAreMatched(prevCard, card) {
     return (prevValue === value);
 }
 
+/**
+ * Show incorrect guess animation.
+ * Then close cards with animation.
+ * @param prevCard
+ * @param card
+ */
 function incorrectGuess(prevCard, card) {
     function onAnimationEnd() {
         card.removeEventListener('animationend', onAnimationEnd);
@@ -169,7 +211,11 @@ function incorrectGuess(prevCard, card) {
     card.classList.add(incorrect, incorrectAnimation);
 }
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+/**
+ * Shuffle function from http://stackoverflow.com/a/2450976
+ * @param array
+ * @returns array
+ */
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -184,12 +230,21 @@ function shuffle(array) {
     return array;
 }
 
+/**
+ * Remove all card classes except "card" class
+ * @param card
+ */
 function cleanCardClassList(card) {
     card.classList.remove(match, open, incorrect,
         startOpenAnimation, endOpenAnimation, closeAnimation,
         matchAnimation, incorrectAnimation);
 }
 
+/**
+ * Remove all card classes except "card" class
+ * @param cards array
+ * @returns cards array
+ */
 function cleanCardsClassList(cards) {
     for (let i = 0; i < cards.length; i++) {
         cleanCardClassList(cards[i]);
@@ -198,6 +253,12 @@ function cleanCardsClassList(cards) {
     return cards;
 }
 
+/**
+ * Show win dialog with game statistics
+ * @param moves
+ * @param stars
+ * @param time
+ */
 function showWinAlert(moves, stars, time) {
     swal({
         title: 'Congratulations! You Won!',
