@@ -125,7 +125,13 @@ h1 {
     display: inline-block;
 }
 
+.score-panel .right_container {
+    float: right;
+    width: 100px;
+}
+
 .score-panel .restart {
+    display: inline;
     float: right;
     cursor: pointer;
 }

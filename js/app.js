@@ -23,11 +23,22 @@ let starsCount = 3;
 
 let matchedCardsCount = 0;
 
+const timerSpan = document.querySelector('.timer');
+const timer = new Timer();
+
+timer.addEventListener('secondsUpdated', updateTimerSpan);
+timer.addEventListener('reset', updateTimerSpan);
 
 document.addEventListener('DOMContentLoaded', restartGame);
 restart.addEventListener('click', restartGame);
 
+function updateTimerSpan() {
+    timerSpan.textContent = timer.getTimeValues().toString();
+}
+
 function restartGame() {
+    timer.reset();
+
     document.querySelector('.deck').remove();
 
     cards = shuffle(cards);
@@ -130,7 +141,9 @@ function matchCards(prevCard, card) {
 
     const winCondition = 16;
     if (matchedCardsCount === winCondition) {
-        showWinAlert();
+        const time = timer.getTimeValues().toString();
+        timer.stop();
+        showWinAlert(moves, starsCount, time);
     }
 }
 
@@ -185,10 +198,13 @@ function cleanCardsClassList(cards) {
     return cards;
 }
 
-function showWinAlert() {
+function showWinAlert(moves, stars, time) {
     swal({
         title: 'Congratulations! You Won!',
-        text: `With ${moves} Moves and ${starsCount} Stars. Woohooo!`,
+        html:
+            `With ${moves} Moves and ${stars} Stars.<br>` +
+            `Time taken to win the game: ${time}<br>` +
+            `Woohooo!`,
         type: 'success',
         confirmButtonText: 'Play again!',
         confirmButtonColor: '#02ccba'
