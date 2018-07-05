@@ -3,8 +3,8 @@ A browser-based card matching game (also known as Concentration)
 
 ## Table of Contents
 
-* [How The Game Works](#How The Game Works)
-* [Built With](#Built With)
+* [How The Game Works](#how-the-game-works)
+* [Built With](#built-with)
 
 ## How The Game Works
 The game board consists of sixteen "cards" arranged in a grid.  
