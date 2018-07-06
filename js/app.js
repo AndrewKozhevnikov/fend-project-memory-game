@@ -1,3 +1,5 @@
+'use strict';
+
 const open = 'open';
 const match = 'match';
 const incorrect = 'incorrect';
