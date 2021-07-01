@@ -27,3 +27,6 @@ After win the game shows alert dialog with its statistics.
 - [animate.css](https://daneden.github.io/animate.css/)
 - [sweetalert2](https://sweetalert2.github.io/)
 - [easytimer.js](https://albert-gonzalez.github.io/easytimer.js/)
+
+## Try it
+[Match Card Game](https://andyk-dev.github.io/fend-project-memory-game/)
